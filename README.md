@@ -5,8 +5,9 @@ My variation of MIT60001 OCW's Problem Set 2: Hangman.
 Instructions for vanilla version:
 - This is a console only program currently, created using Spyder.
 1. Open in an IDE or web editor like Repl.it or trinket.io/python
-2. Run file ("F5" in Spyder).  Read through console prompts and enter single letter guesses
-3. You have 6 total guesses
+2. Run file ("F5" in Spyder)
+3. Read through console prompts and enter single-letter guesses
+4. You have 6 total guesses
 
 TO DO
 - [ ] Add warnings if user doesn't enter single letters
