@@ -17,5 +17,5 @@ TO DO
 - [X] Add strikes if user inputs same letter more than once
 - [ ] Add incremented hanged man image for incorrect guesses
 - [ ] Add score
-- [ ] Make code more efficient
+- [ ] Reformat
 - [ ] PEP8
