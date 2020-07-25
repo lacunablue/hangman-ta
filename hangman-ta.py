@@ -1,13 +1,17 @@
 # My variation of MIT60001 OCW's Problem Set 2: Hangman
 
 # TO DO
-# [ ] Add warnings if user doesn't enter single letters
+# [X] Add reminder if user doesn't enter single letters
 # [X] Add input filter for letters only
 # [ ] Add hints
-# [ ] Add reply if user inputs same letter more than once
+# [X] Add strike if user inputs same letter more than once
+# [ ] Add incremented hanged man image for incorrect guesses
+# [ ] Add score
+# [X] Add try again option after winning or losing
 
 import string
 import random
+import sys
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -43,7 +47,7 @@ def is_word_guessed(secret_word, letters_guessed):
     Requires user input of letters in hangman() function. Input letters create
     list "letters_guessed".
         Returns: boolean, True if all the letters of secret_word are in
-    letters_guessed; False otherwise. True is Victory, False otherwise.
+    letters_guessed; False otherwise. True is "Beating the game".
     '''
     for char in secret_word:
         if char not in letters_guessed:
@@ -89,12 +93,13 @@ def hangman(secret_word):
 
     # initializers
     letters_guessed = []
+    duplicate_letters = []
     secret_word_to_print = get_guessed_word(secret_word, letters_guessed)
     num_guesses = 6
-    # strikes = 0
+    strikes = 0
 
     # title screen
-    print(f"\nWelcome to Hangman!\n\nThe word you have to guess is {len(secret_word)} characters long.")
+    print(f"\nWelcome to Hangman!\n* * * * * * * * * *\n\nThe word you have to guess is {len(secret_word)} characters long.")
     print(f"-- You have - {num_guesses} - guesses remaining.")
     print("Please enter one single-letter guess per round.")
     print("\n------------------------------------")
@@ -105,37 +110,41 @@ def hangman(secret_word):
         letter_guessed = letter_guessed.casefold() # forces guesses to be lower case
 
         if letter_guessed == 'quit':
-            return
-# FIX BELOW ME (num_guesses decrementor below is conflicting)
-        # if not letter_guessed.isalpha(): # checks to see if guess is a letter
-        #     strikes += 1
-        #     print(f"\nPlease input a single letter only! You have {strikes} strike(s) left.")
-
-        # if letter_guessed in letters_guessed:
-        #     strikes += 1
-        #     print(f"\nYou already tried that letter! You have {strikes} strike(s) left.")
-
-        # if strikes >= 3:
-        #     num_guesses -= 1
-        #     print("Three strikes! You lose a guess...")
-        #     strikes = 0
-# FIX ABOVE ME
+            sys.exit()
+        elif len(letter_guessed) != 1:
+            print("Reminder: Please enter one single-letter guess per round.")
+            continue
+        elif letter_guessed in letters_guessed:
+            duplicate_letters.insert(0, letter_guessed)
         else:
             letters_guessed.insert(0, letter_guessed)
 
-        is_word_guessed(secret_word, letters_guessed)
-        get_guessed_word(secret_word, letters_guessed)
+        is_word_guessed(secret_word, letters_guessed) # Compares guessed letters to all letters in secret word.
+        get_guessed_word(secret_word, letters_guessed) # Secret word's letters are "_" until guessed.
         secret_word_to_print = get_guessed_word(secret_word, letters_guessed)
 
         for char in letter_guessed:
-            if char not in secret_word:
-                num_guesses -= 1
-                get_available_letters(letters_guessed)
-                secret_word_to_print
-                print(f"\nNot quite! Try again.\n-- You have - {num_guesses} - guesses remaining. ")
-                print(f"-- Available letters: {get_available_letters(letters_guessed)}")
-                print(f"* * * *\nYour guessed word thus far... {secret_word_to_print}")
-                print("\n------------------------------------")
+            if char in duplicate_letters:
+                strikes += 1
+                if strikes < 3:
+                    print(f"\nYou already tried that character! You have {strikes} strike(s).")
+                    print(f"-- You still have - {num_guesses} - guesses remaining. ")
+
+            elif not letter_guessed.isalpha():
+                strikes += 1
+                if strikes < 3:
+                    print(f"\nPlease input single letters only! You have {strikes} strike(s).")
+                    print(f"-- You still have - {num_guesses} - guesses remaining. ")
+
+            elif char not in secret_word:
+                if char not in duplicate_letters:
+                    num_guesses -= 1
+                    get_available_letters(letters_guessed)
+                    secret_word_to_print
+                    print(f"\nNot quite! Try again.\n-- You have - {num_guesses} - guesses remaining. ")
+                    print(f"-- Available letters: {get_available_letters(letters_guessed)}")
+                    print(f"* * * *\nYour guessed word thus far... {secret_word_to_print}")
+                    print("\n------------------------------------")
 
             else:
                 get_available_letters(letters_guessed)
@@ -146,15 +155,45 @@ def hangman(secret_word):
                 print(f"-- Available letters: {get_available_letters(letters_guessed)}")
                 print("\n------------------------------------")
 
+        if strikes >= 3:
+            num_guesses -= 1
+            print("3 strikes! You lose a guess...")
+            print(f"-- You now have - {num_guesses} - guesses remaining. ")
+            strikes = 0
+
         if is_word_guessed(secret_word, letters_guessed):
             print("You win!!!")
-            print(f"The secret word was '{secret_word}'.")
-            return
+            print(f"\nThe secret word was '{secret_word}'.")
+            
+            try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
+            if try_again == 'yes' or 'ye' or 'y':
+                print("Good luck!\n")
+                print("\n------------------------------------\n")
+                hangman(secret_word)
+            elif try_again == 'no' or 'n':
+                print("\nUntil next time!")
+                sys.exit()
+            else:
+                print("\nUntil next time!")
+                sys.exit()
 
         if num_guesses <= 0:
-            print("\nGAME OVER\n-- No more guesses left.\nYour progress:", secret_word_to_print)
-            print(f"The secret word was '{secret_word}'.")
-            return
+            print("\n------------------------------------\n")
+            print("\nGAME OVER\n-- No more guesses left.")
+            print(f"\nThe secret word was '{secret_word}'.")
+            print(f"\nYour progress: {secret_word_to_print}")
+            
+            try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
+            if try_again == 'yes' or try_again == 'ye' or try_again == 'y':
+                print("Good luck!\n")
+                print("\n------------------------------------\n")
+                hangman(secret_word)
+            elif try_again == 'no' or try_again == 'n':
+                print("\nUntil next time!")
+                sys.exit()
+            else:
+                print("\nUntil next time!")
+                sys.exit()
 
 secret_word = choose_word(wordlist)
 hangman(secret_word)
