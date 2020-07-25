@@ -11,10 +11,9 @@ Instructions for vanilla version:
 
 TO DO
 - [ ] Add testing file / test cases
-- [ ] Add warnings if user doesn't enter single letters
-- [ ] Add input filter for letters only
+- [X] Add reminder if user doesn't enter single letters
+- [X] Add input filter for letters only
 - [ ] Add hints
-- [ ] Add reply if user inputs same letter more than once
+- [X] Add strikes if user inputs same letter more than once
 - [ ] Add incremented hanged man image for incorrect guesses
 - [ ] Add score
-- [ ] Add heftier penalty for wrong vowel guess
