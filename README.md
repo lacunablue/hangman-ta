@@ -10,6 +10,7 @@ Instructions for vanilla version:
 4. You have 6 total guesses
 
 TO DO
+- [ ] Add testing file / test cases
 - [ ] Add warnings if user doesn't enter single letters
 - [ ] Add input filter for letters only
 - [ ] Add hints
