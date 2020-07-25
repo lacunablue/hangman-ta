@@ -143,14 +143,14 @@ def hangman(secret_word):
                     secret_word_to_print
                     print(f"\nNot quite! Try again.\n-- You have - {num_guesses} - guesses remaining. ")
                     print(f"-- Available letters: {get_available_letters(letters_guessed)}")
-                    print(f"* * * *\nYour guessed word thus far... {secret_word_to_print}")
+                    print(f"\nYour guessed word thus far... {secret_word_to_print}")
                     print("\n------------------------------------")
 
             else:
                 get_available_letters(letters_guessed)
                 secret_word_to_print
                 print("\nGot one!")
-                print(f"* * * *\nYour guessed word thus far... {secret_word_to_print}")
+                print(f"* * * * *\nYour guessed word thus far... {secret_word_to_print}")
                 print(f"-- You still have - {num_guesses} - guesses remaining. ")
                 print(f"-- Available letters: {get_available_letters(letters_guessed)}")
                 print("\n------------------------------------")
