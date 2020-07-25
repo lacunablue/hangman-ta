@@ -1,6 +1,6 @@
 # hangman-ta
 My variation of MIT60001 OCW's Problem Set 2: Hangman. 
--This is not yet complete as Problem Set 2 requires warnings, heftier penalty for mis-guessed vowels, and score.
+-This is not yet complete as Problem Set 2 requires warnings, heftier penalty for mis-guessed vowels, score, and hints.
 
 Instructions for vanilla version:
 - This is a console only program currently, created using Spyder.
