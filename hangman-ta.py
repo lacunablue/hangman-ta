@@ -1,14 +1,5 @@
 # My variation of MIT60001 OCW's Problem Set 2: Hangman
 
-# TO DO
-# [X] Add reminder if user doesn't enter single letters
-# [X] Add input filter for letters only
-# [ ] Add hints
-# [X] Add strike if user inputs same letter more than once
-# [ ] Add incremented hanged man image for incorrect guesses
-# [ ] Add score
-# [X] Add try again option after winning or losing
-
 import string
 import random
 import sys
@@ -162,37 +153,38 @@ def hangman(secret_word):
             strikes = 0
 
         if is_word_guessed(secret_word, letters_guessed):
-            print("You win!!!")
+            print("\n\n\n* * YOU WIN * *")
             print(f"\nThe secret word was '{secret_word}'.")
-            
+            print(f"\nScore: {num_guesses * len(set(secret_word))}")
             try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
-            if try_again == 'yes' or 'ye' or 'y':
-                print("Good luck!\n")
+            if try_again == 'yes' or try_again == 'ye' or try_again == 'y':
+                print("--Good luck!\n")
                 print("\n------------------------------------\n")
+                secret_word = choose_word(wordlist)
                 hangman(secret_word)
-            elif try_again == 'no' or 'n':
-                print("\nUntil next time!")
+            elif try_again == 'no' or try_again == 'n':
+                print("--Until next time!")
                 sys.exit()
             else:
-                print("\nUntil next time!")
+                print("--Until next time!")
                 sys.exit()
 
         if num_guesses <= 0:
-            print("\n------------------------------------\n")
-            print("\nGAME OVER\n-- No more guesses left.")
+            print("\n\n\nGAME OVER\n-- No more guesses left.")
             print(f"\nThe secret word was '{secret_word}'.")
             print(f"\nYour progress: {secret_word_to_print}")
-            
+
             try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
             if try_again == 'yes' or try_again == 'ye' or try_again == 'y':
-                print("Good luck!\n")
+                print("--Good luck!\n")
                 print("\n------------------------------------\n")
+                secret_word = choose_word(wordlist)
                 hangman(secret_word)
             elif try_again == 'no' or try_again == 'n':
-                print("\nUntil next time!")
+                print("--Until next time!")
                 sys.exit()
             else:
-                print("\nUntil next time!")
+                print("--Until next time!")
                 sys.exit()
 
 secret_word = choose_word(wordlist)
