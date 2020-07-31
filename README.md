@@ -1,5 +1,6 @@
 # hangman-ta
-My variation of MIT60001 OCW's Problem Set 2: Hangman. 
+My variation of MIT60001 OCW's Problem Set 2: Hangman.
+
 -Note: I chose not to add a heftier penalty for incorrect vowel guesses
 
 Instructions for vanilla version:
