@@ -162,7 +162,7 @@ def hangman(secret_word):
                 print("\n------------------------------------\n")
                 secret_word = choose_word(wordlist)
                 hangman(secret_word)
-            elif try_again in ['no', 'n']:
+            elif try_again in ['n', 'no']:
                 print("--Until next time!")
                 sys.exit()
             else:
@@ -180,7 +180,7 @@ def hangman(secret_word):
                 print("\n------------------------------------\n")
                 secret_word = choose_word(wordlist)
                 hangman(secret_word)
-            elif try_again in ['no', 'n']:
+            elif try_again in ['n', 'no']:
                 print("--Until next time!")
                 sys.exit()
             else:
