@@ -157,12 +157,12 @@ def hangman(secret_word):
             print(f"\nThe secret word was '{secret_word}'.")
             print(f"\nScore: {num_guesses * len(set(secret_word))}")
             try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
-            if try_again == 'yes' or try_again == 'ye' or try_again == 'y':
+            if try_again in ['y', 'ye', 'yes']:
                 print("--Good luck!\n")
                 print("\n------------------------------------\n")
                 secret_word = choose_word(wordlist)
                 hangman(secret_word)
-            elif try_again == 'no' or try_again == 'n':
+            elif try_again in ['no', 'n']:
                 print("--Until next time!")
                 sys.exit()
             else:
@@ -175,12 +175,12 @@ def hangman(secret_word):
             print(f"\nYour progress: {secret_word_to_print}")
 
             try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
-            if try_again == 'yes' or try_again == 'ye' or try_again == 'y':
+            if try_again in ['y', 'ye', 'yes']:
                 print("--Good luck!\n")
                 print("\n------------------------------------\n")
                 secret_word = choose_word(wordlist)
                 hangman(secret_word)
-            elif try_again == 'no' or try_again == 'n':
+            elif try_again in ['no', 'n']:
                 print("--Until next time!")
                 sys.exit()
             else:
