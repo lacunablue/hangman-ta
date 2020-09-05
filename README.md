@@ -1,8 +1,6 @@
 # hangman-ta
 My variation of MIT60001 OCW's Problem Set 2: Hangman.
 
-**Note: I chose not to add a heftier penalty for incorrect vowel guesses.
-
 Instructions for vanilla version:
 - This is a console/terminal only program created using Spyder
 1. Make sure all files are saved to the same directory/folder
@@ -18,5 +16,4 @@ TO DO
 - [X] Add strikes if user inputs same letter more than once
 - [ ] Add incremented hanged man image for incorrect guesses
 - [X] Add score
-- [ ] Reformat
-- [ ] PEP8
+- [ ] Reformat via peer review/PEP8
