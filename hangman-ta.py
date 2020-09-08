@@ -24,8 +24,8 @@ def load_words():
 
 def choose_word(wordlist):
     '''Generates random word from words.txt
+    
     wordlist (list): list of words (strings)
-
         Returns a word from wordlist at random
     '''
     return random.choice(wordlist)
@@ -64,7 +64,7 @@ def get_guessed_word(secret_word, letters_guessed):
 def get_available_letters(letters_guessed):
     '''Pulls letters guessed out of alphabet to show user what letters remain.
 
-    Requires import string and for user input of letters in hangman() function.
+    Input: Requires import string and for user input of letters in hangman() function.
         Returns: Remaining available/un-guessed letters from alphabet.
     '''
     available_letters = ''
@@ -77,9 +77,9 @@ def get_available_letters(letters_guessed):
 def hangman(secret_word):
     '''Starts up an interactive game of Hangman.
 
-    Input single letter guesses when prompted.
+    Input: single letter guesses when prompted.
         Returns: Whether guess is correct or not. If num_guesses reaches 0, game
-    over. If user guesses secret word before num_guesses = 0, victory.
+        over. If user guesses secret word before num_guesses = 0, victory.
     '''
 
     # initializers
