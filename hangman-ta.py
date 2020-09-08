@@ -25,7 +25,7 @@ def load_words():
 def choose_word(wordlist):
     '''Generates random word from words.txt
     
-    wordlist (list): list of words (strings)
+    Input: wordlist, list of words (strings)
         Returns a word from wordlist at random
     '''
     return random.choice(wordlist)
