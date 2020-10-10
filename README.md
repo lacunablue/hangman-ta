@@ -16,4 +16,4 @@ TO DO
 - [X] Add strikes if user inputs same letter more than once
 - [ ] Add incremented hanged man image for incorrect guesses
 - [X] Add score
-- [ ] Reformat via peer review/PEP8
+- [ ] Reformat via peer review/PEP8/Sourcery/Google Docstrings best practices
