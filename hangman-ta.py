@@ -1,10 +1,12 @@
-# My variation of MIT60001 OCW's Problem Set 2: Hangman
-
+"""
+My variation of MIT60001 OCW's Problem Set 2: Hangman
+"""
 import string
 import random
 import sys
 
 WORDLIST_FILENAME = "words.txt"
+
 
 def load_words():
     '''Opens and loads in words.txt
@@ -22,6 +24,7 @@ def load_words():
     print("  ", len(wordlist), "words loaded.")
     return wordlist
 
+
 def choose_word(wordlist):
     '''Generates random word from words.txt
     
@@ -30,7 +33,9 @@ def choose_word(wordlist):
     '''
     return random.choice(wordlist)
 
+
 wordlist = load_words()
+
 
 def is_word_guessed(secret_word, letters_guessed):
     '''Compares guessed letters to all letters in secret word.
@@ -44,6 +49,7 @@ def is_word_guessed(secret_word, letters_guessed):
         if char not in letters_guessed:
             return False
     return True
+
 
 def get_guessed_word(secret_word, letters_guessed):
     '''Secret word's letters are "_" until guessed. Replaced by letter upon
@@ -61,6 +67,7 @@ def get_guessed_word(secret_word, letters_guessed):
 
     return secret_word_to_print
 
+
 def get_available_letters(letters_guessed):
     '''Pulls letters guessed out of alphabet to show user what letters remain.
 
@@ -74,6 +81,7 @@ def get_available_letters(letters_guessed):
 
     return available_letters
 
+
 def hangman(secret_word):
     '''Starts up an interactive game of Hangman.
 
@@ -85,10 +93,10 @@ def hangman(secret_word):
     # initializers
     letters_guessed = []
     duplicate_letters = []
-    secret_word_to_print = get_guessed_word(secret_word, letters_guessed)
     num_guesses = 6
     strikes = 0
 
+    # TODO MAKE TITLE SCREEN FUNCTION
     # title screen
     print(f"\nWelcome to Hangman!\n* * * * * * * * * *\n\nThe word you have to guess is {len(secret_word)} characters long.")
     print(f"-- You have - {num_guesses} - guesses remaining.")
@@ -127,15 +135,14 @@ def hangman(secret_word):
                     print(f"\nPlease input single letters only! You have {strikes} strike(s).")
                     print(f"-- You still have - {num_guesses} - guesses remaining. ")
 
-            elif char not in secret_word:
-                if char not in duplicate_letters:
-                    num_guesses -= 1
-                    get_available_letters(letters_guessed)
-                    secret_word_to_print
-                    print(f"\nNot quite! Try again.\n-- You have - {num_guesses} - guesses remaining. ")
-                    print(f"-- Available letters: {get_available_letters(letters_guessed)}")
-                    print(f"\nYour guessed word thus far... {secret_word_to_print}")
-                    print("\n------------------------------------")
+            elif char not in secret_word and char not in duplicate_letters:
+                num_guesses -= 1
+                get_available_letters(letters_guessed)
+                secret_word_to_print
+                print(f"\nNot quite! Try again.\n-- You have - {num_guesses} - guesses remaining. ")
+                print(f"-- Available letters: {get_available_letters(letters_guessed)}")
+                print(f"\nYour guessed word thus far... {secret_word_to_print}")
+                print("\n------------------------------------")
 
             else:
                 get_available_letters(letters_guessed)
@@ -156,6 +163,7 @@ def hangman(secret_word):
             print("\n\n\n* * YOU WIN * *")
             print(f"\nThe secret word was '{secret_word}'.")
             print(f"\nScore: {num_guesses * len(set(secret_word))}")
+
             try_again = input("\nWould you like to play again? Type 'yes' or 'no' ... : ").lower()
             if try_again in ['y', 'ye', 'yes']:
                 print("--Good luck!\n")
@@ -187,5 +195,7 @@ def hangman(secret_word):
                 print("--Until next time!")
                 sys.exit()
 
+# Generate secret word for game
 secret_word = choose_word(wordlist)
+# Start game
 hangman(secret_word)
