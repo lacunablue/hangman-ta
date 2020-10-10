@@ -14,6 +14,5 @@ TO DO
 - [X] Add reminder if user doesn't enter single letters
 - [X] Add input filter for letters only
 - [X] Add strikes if user inputs same letter more than once
-- [ ] Add incremented hanged man image for incorrect guesses
 - [X] Add score
 - [ ] Reformat via peer review/PEP8/Sourcery/Google Docstrings best practices
